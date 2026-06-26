@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Big Break - BreakWire Playlists</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <nav class="systembar" aria-label="Mac menu bar">
+      <div class="system-left">
+        <span class="system-apple" aria-hidden="true"></span>
+        <strong>BreakWire</strong>
+        <span>File</span>
+        <span>Edit</span>
+        <span>Find</span>
+        <span>Channels</span>
+        <span>User</span>
+        <span>Tools</span>
+        <span>Web</span>
+        <span>Help</span>
+      </div>
+      <div class="system-right">
+        <span class="speaker" aria-hidden="true">)))</span>
+        <span id="systemClock"></span>
+      </div>
+    </nav>
+
+    <main class="desktop">
+      <div class="desktop-icons" aria-hidden="true">
+        <div class="desktop-file rtf-icon"><span>RTF</span><strong>ngoexpose.rtf</strong></div>
+        <div class="desktop-file folder-icon"><img src="assets/folder-icon.png" alt=""><strong>untitled folder</strong></div>
+        <div class="desktop-file pics-icon"><span></span><strong>amsterdam trip pics</strong></div>
+        <div class="desktop-file aim-icon"><img src="assets/aim-icon.png" alt=""><strong>AIM</strong></div>
+      </div>
+
+      <section class="app-window" aria-label="BreakWire playlist interface">
+        <header class="titlebar">
+          <div class="window-buttons" aria-hidden="true">
+            <span class="close"></span>
+            <span class="minimize"></span>
+            <span class="zoom"></span>
+          </div>
+          <div class="window-title">
+            <span class="app-mark">BW</span>
+            <span id="windowTitle">Search results</span>
+          </div>
+        </header>
+
+        <nav class="menubar" aria-label="Application menu">
+          <button aria-label="Stop">x</button>
+          <button aria-label="Find">Q</button>
+          <button aria-label="Download">v</button>
+          <button aria-label="Library">MP3</button>
+          <button aria-label="Chat">:)</button>
+          <button aria-label="Help">?</button>
+          <span class="share-count">289 users sharing 37558 files (158 gigs)</span>
+        </nav>
+
+        <div class="toolbar">
+          <label class="character-picker">
+            <span>Character</span>
+            <select id="characterSelect" aria-label="Select character playlist"></select>
+          </label>
+          <div class="searchbox" aria-label="Search box">
+            <span>Search:</span>
+            <input id="fakeSearch" type="text" readonly>
+          </div>
+          <div class="connection">
+            <span class="led"></span>
+            <span>Online</span>
+          </div>
+          <button class="refresh-button" id="refreshButton">Refresh</button>
+        </div>
+
+        <div class="content">
+          <aside class="sidebar">
+            <div class="panel">
+              <div class="panel-title">Library</div>
+              <button class="nav-item active">Shared MP3s</button>
+              <button class="nav-item">Incoming</button>
+              <button class="nav-item">Incomplete</button>
+              <button class="nav-item">Burn List</button>
+            </div>
+
+            <div class="panel playlist-card">
+              <img id="coverArt" alt="" src="">
+              <div>
+                <div id="characterName" class="character-name"></div>
+                <div id="playlistOwner" class="muted"></div>
+              </div>
+            </div>
+
+            <div class="panel stats">
+              <div><span>Files</span><strong id="fileCount"></strong></div>
+              <div><span>Bitrate</span><strong>128-192 kbps</strong></div>
+              <div><span>Network</span><strong>DSL</strong></div>
+              <div><span>Skin</span><strong>Aqua Graphite</strong></div>
+            </div>
+          </aside>
+
+          <section class="main-panel">
+            <div class="tabs" aria-label="Main tabs">
+              <button class="tab active" data-view="search">Search Results</button>
+              <button class="tab" data-view="downloads">Downloads</button>
+              <button class="tab" data-view="now-playing">Now Playing</button>
+              <button class="tab" data-view="chat">Chat</button>
+            </div>
+
+            <div class="view active" id="searchView">
+              <div class="result-header">
+                <div>
+                  <h1 id="playlistTitle"></h1>
+                  <p id="playlistSubtitle"></p>
+                </div>
+                <div class="meter" aria-label="Connection meter">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+
+              <div class="table-shell">
+                <table>
+                  <thead>
+                    <tr>
+                      <th class="play-col">Play</th>
+                      <th class="num">#</th>
+                      <th>Filename</th>
+                      <th>Artist</th>
+                      <th>Length</th>
+                      <th>Size</th>
+                      <th>Bitrate</th>
+                      <th>User</th>
+                    </tr>
+                  </thead>
+                  <tbody id="trackRows"></tbody>
+                </table>
+              </div>
+
+              <div class="transfer-strip" aria-label="Download progress">
+                <div class="transfer-title">Transfers</div>
+                <div class="transfer-row">
+                  <span id="transferFile">Jeff_Buckley-Dream_Brother_cd-rip.mp3</span>
+                  <div class="progress"><span></span></div>
+                  <strong>12.4 KB/s</strong>
+                  <em>Searching more sources...</em>
+                </div>
+              </div>
+            </div>
+
+            <div class="view" id="nowPlayingView" aria-label="Now playing">
+              <div class="now-playing">
+                <div class="player-copy">
+                  <p class="kicker">Now Playing</p>
+                  <h1 id="nowTrack"></h1>
+                  <p id="nowArtist"></p>
+                </div>
+                <div class="visualizer" aria-label="Audio visualizer">
+                  <div class="scope">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span>
+                  </div>
+                  <div class="wave wave-a"></div>
+                  <div class="wave wave-b"></div>
+                  <div class="wave wave-c"></div>
+                </div>
+                <div class="transport" aria-label="Playback controls">
+                  <button aria-label="Previous">|&lt;</button>
+                  <button aria-label="Play">▶</button>
+                  <button aria-label="Stop">■</button>
+                  <button aria-label="Next">&gt;|</button>
+                  <div class="scrubber"><span></span></div>
+                  <strong id="nowDuration"></strong>
+                </div>
+                <div class="listen-links">
+                  <a id="externalPlayLink" target="_blank" rel="noreferrer">Play file</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="view empty-view" id="downloadsView">
+              <h1>Downloads</h1>
+              <p>No active downloads. Shared folder is online.</p>
+            </div>
+
+            <div class="view empty-view" id="chatView">
+              <h1>Chat</h1>
+              <p>Channel idle.</p>
+            </div>
+
+            <footer class="statusbar">
+              <span id="statusText"></span>
+              <span>downloads: 0 active / 0 queued</span>
+            </footer>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
